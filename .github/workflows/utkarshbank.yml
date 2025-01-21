@@ -24,18 +24,11 @@ jobs:
           java-version: '11'  # Specify Java version
           distribution: 'temurin'  # Choose the JDK distribution
 
-      # Step 3: Cache Maven dependencies
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      # Step 4: Build and test the project
+     # Step 3: Navigate to the correct directory (if `pom.xml` is not in the root)
       - name: Build with Maven
-        run: mvn clean install
+        run: |
+          cd <path-to-project-root> # Replace with the relative path to the directory containing `pom.xml`
+          mvn clean install
 
       # Step 5: Run tests
       - name: Run tests
