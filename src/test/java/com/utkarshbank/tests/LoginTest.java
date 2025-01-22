@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,7 @@ public class LoginTest extends BaseTest {
 
 	@BeforeMethod
 	@Parameters({ "siteURL", "browser" })
-	public void initDriver(String siteURL, String browser) throws InterruptedException {
+	public void initDriver(@Optional("defaultSiteURL") String siteURL, String browser) throws InterruptedException {
 
 		logger.info("Starting of initDriver method in LoginTest");
 		if (driver == null) {
